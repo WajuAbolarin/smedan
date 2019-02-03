@@ -27,7 +27,7 @@
                                     <div class="form-group">
                                         <label>LGA</label>
                                         <select v-model="chosenLGA"  class="form-control">
-                                            <option v-for="LGA in availableLGAS" :key="LGA.name" value="LGA.name">{{LGA.name}}</option>
+                                            <option v-for="LGA in availableLGAS" :key="LGA.name" :value="LGA.name">{{LGA.name}}</option>
                                         </select>
                                     </div>
 
@@ -73,10 +73,10 @@ export default {
     data(){
         return {
             showModal: this.show,
-            chosenState: 'Kogi',  //null,
-            chosenLGA: 'Yagba West', //null,
-            budgetYear: '2019', //null,
-            address: '10 my compound' //null,
+            chosenState: null,
+            chosenLGA: null,
+            budgetYear:null,
+            address: null,
 
         }
     },
@@ -102,8 +102,10 @@ export default {
         },
 
         createCenter(){
-            const {chosenState, chosenLGA, budgetYear, address} = this.$data            
-            this.$store.dispatch('center/create' ,{chosenState, chosenLGA, budgetYear, address} )
+            const {chosenState : state, chosenLGA : LGA, budgetYear, address} = this.$data            
+            this.$store.dispatch('center/create' ,{state, LGA, budgetYear, address} )
+            this.$emit('close-modal')
+            this.chosenState = this.chosenLGA = this.budgetYear = this.address = null
         }
     },
 }

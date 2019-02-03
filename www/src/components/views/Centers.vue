@@ -29,15 +29,15 @@
 
                     <ul class="list-group">
 
-                        <li class="list-group-item">
-                            <a href="#" class="media">
+                        <li class="list-group-item" v-for="center in centers" :key="center.key">
+                            <router-link to="/" class="media">
                                 <div class="media-body">
-                                    <h5>Ikoyi, Lagos</h5> 
-                                    <p>Address: Lagos, Ikeja, 3rd avenue hall 4</p>
-                                    <p>Budget Year: 2019 </p>
+                                    <h5>{{center.LGA}}, {{center.state}}</h5> 
+                                    <p>{{center.address}}</p>
+                                    <p>Budget Year: {{center.budgetYear}} </p>
                                     <h2 class="title-number-carousel color-primary"><span class="text-primary">126</span><small> Beneficiaries</small></h2>
                                 </div>
-                            </a>
+                            </router-link>
                             <div class="w-auto"><a href="#" class="media">
                                 </a><a href="beneficiaries.html" class="btn btn-sm btn-primary">View Beneficiaries</a>
                                 <a href="new-beneficiary.html" class="btn btn-sm btn-primary">Add Beneficiaries</a>
@@ -65,6 +65,11 @@ export default {
             showModal: false
         }
     },
+    computed:{
+        centers(){
+            return this.$store.getters['center/centers']
+        }
+    },
     methods:{
         toggleModal(){
             this.showModal = !this.showModal
@@ -74,6 +79,10 @@ export default {
         {
             this.showModal = false;
         }
+    },
+    created(){
+        console.log('here in created')
+        this.$store.dispatch('center/fetchCenters')
     }
 
 }
@@ -88,4 +97,5 @@ button.btn.btn-block.gradient{
     background-image: -webkit-linear-gradient( 63deg, rgb(0, 196, 115) 0%,
                      rgb(29, 214, 111) 52%, rgb(58, 231, 107) 100%);
 }
+
 </style>

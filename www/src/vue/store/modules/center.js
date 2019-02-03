@@ -1,3 +1,8 @@
+
+import id from 'shortid'
+import Storage from 'localforage'
+
+
 export default {
     namespaced: true,
 
@@ -5,32 +10,54 @@ export default {
         centers: [],
     },
 
-    getters:{},
-    
-    mutations:{
-        add({state}, center){
-            console.log('add center to store')
+    getters:{
+        centers(state){
+            return state.centers
         }
     },
     
-    actions:{ 
-        createTable({commit, rootState}){
-            console.log('creating table ')
-            rootState.db.transaction(function(trx) {
-                trx.executeSql(`CREATE TABLE IF NOT EXISTS centers (
-                    center_id integer PRIMARY KEY,
-                    state text NOT NULL
-                    LGA text NOT NULL
-                    address text NOT NULL
-                    budget_year text NOT NULL
-                   )`);
-            });
+    mutations:{
+        setCenters(state, centers){
+            state.centers = centers
         },
 
-        create({commit, rootState }, center){
-            console.log('commiting mutation')
-            commit('add', center)
+        add(state, newCenter){
+            state.centers.unshift(newCenter)
+        }
+    },
+    
+    actions: { 
+        create({commit, state}, center){
+            let newCenter =  Object.assign({}, center, {key: id.generate(), isOffline: true})
+            
+            Storage.getItem('SMEDAN_CENTERS')
+            .then( savedCenters => {
+                savedCenters = savedCenters ? savedCenters : []
+                savedCenters.push(newCenter)
+                commit('add', newCenter)
+                return savedCenters
+
+            }).then(newCenters => {
+                Storage.setItem('SMEDAN_CENTERS', newCenters)
+                .then(savedValues => console.dir('updated storage'))
+            })
+
         },
 
+        fetchCenters({commit}){
+            //fetch local
+            Storage.getItem('SMEDAN_CENTERS')
+            .then( centers => {
+                let offlineCenters = centers ? centers : []
+
+                //fetch online
+                let onlineCenters = []
+    
+                //combine and mutate state
+                commit('setCenters', [...offlineCenters, ...onlineCenters] )
+                
+            })
+            
+        }
     }
 }
