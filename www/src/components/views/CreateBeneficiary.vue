@@ -220,10 +220,13 @@
                                                         <input type="tel" v-model="accountNumber" class="form-control">
                                                     </div> 
                                                 </div>
-                                            </div>                            
+                                            </div>           
                                             <!-- /.row -->
                                             <div class="row">
-                                                <div class="col-12 mb-2">
+                                                <div class="col-12 mb-2 d-flex flex-column">
+                                                     <div class="preview-wrapper">
+                                                        <img ref="preview" alt="">
+                                                     </div>
                                                     <button class="btn btn-block btn-info" ref="capture">Capture Beneficiary</button>
                                                 </div>
                                                 <div class="col-12 mb-2">
@@ -360,7 +363,11 @@ export default {
                 e.preventDefault()
                 navigator.camera.getPicture((imgUri)=>{
                         window.resolveLocalFileSystemURL(imgUri, function success(fileEntry) {
-                           this.pictureName = fileEntry.fullPath;
+                        
+                            this.pictureName = fileEntry.fullPath
+                            
+                            this.$refs.preview.src = imgUri
+
                            alert(this.pictureName)
                         })
                 }, 
@@ -387,5 +394,10 @@ export default {
 <style>
 .page{
     padding-top: 35px;
+}
+.preview-wrapper img{
+    max-width: 100%;
+    height: 200px;
+    object-fit: contain;
 }
 </style>
