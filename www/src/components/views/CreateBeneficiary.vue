@@ -346,9 +346,9 @@ export default {
              delete beneficiaryData[prop]   
             }
             
-            this.$store.dispatch('beneficiary/creat',beneficiaryData)
-            this.$router.push('/centers')
-            // dispatch action, and navigate back
+            this.$store.dispatch('beneficiary/create', beneficiaryData)
+           
+           this.$router.push('/centers')
         }
     },
     mounted(){
@@ -367,21 +367,22 @@ export default {
             }
 
             trigger.addEventListener('click', (e)=>{
+
                 e.preventDefault()
 
                 navigator.camera.getPicture((imgUri)=>{
-                        window.resolveLocalFileSystemURL(imgUri, function success(fileEntry) {
-                            
-                            self.pictureName = fileEntry.fullPath
+                        
+                    self.pictureName = imgUri
 
-                            // this.$refs.preview.src = imgUri
-                           alert(imgUri)
-                           alert(self.surname)
-                        })
+                    alert(imgUri)
+                    
+                    alert(self.surname)
                 }, 
+                
                 (err)=>{
                     console.dir(err)
                 },
+                
                 options)
             })
         })
