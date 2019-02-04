@@ -61,18 +61,18 @@
                 trigger.addEventListener('click', (e)=>{
                     navigator.camera.getPicture((imgUri)=>{
                             window.resolveLocalFileSystemURL(imgUri, function success(fileEntry) {
-                                console.log("got file: " + fileEntry.fullPath);
+                                alert("got file: " + fileEntry.fullPath);
                             }, function failure(){
 
                             window.resolveLocalFileSystemURL(cordova.file.dataDirectory, function success(dirEntry) {
 
                             dirEntry.getFile("tempFile.jpeg", { create: true, exclusive: false }, function (fileEntry) {
 
-                                console.log("got file: " + fileEntry.fullPath);
+                                alert("got file: " + fileEntry.fullPath);
 
-                            }, onErrorCreateFile)
+                            }, (err)=>{alert(err)})
 
-                        }, onErrorResolveUrl)
+                        }, (err) => {alert(err)})
 
                     })
 
