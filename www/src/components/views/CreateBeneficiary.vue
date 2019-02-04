@@ -213,7 +213,7 @@
                                                         </select>
                                                     </div> 
                                                 </div>
-                                        
+                                                
                                                 <div class="col-12 mb-2">
                                                     <div class="form-group ">
                                                         <label>Account number</label>
@@ -223,9 +223,15 @@
                                             </div>           
                                             <!-- /.row -->
                                             <div class="row">
+                                                <div class="col-12">
+                                                    <ul>
+                                                        <li> {{ pictureName }} </li>
+                                                        <!-- <li> {{file.fullPath()}} </li> -->
+                                                    </ul>
+                                                </div>
                                                 <div class="col-12 mb-2 d-flex flex-column">
                                                      <div class="preview-wrapper">
-                                                        <img ref="preview" alt="">
+                                                        <img v-if="pictureName" :src="pictureName" alt="">
                                                      </div>
                                                     <button class="btn btn-block btn-info" ref="capture">Capture Beneficiary</button>
                                                 </div>
@@ -361,14 +367,15 @@ export default {
 
             trigger.addEventListener('click', (e)=>{
                 e.preventDefault()
+
                 navigator.camera.getPicture((imgUri)=>{
                         window.resolveLocalFileSystemURL(imgUri, function success(fileEntry) {
-                        
-                            this.pictureName = fileEntry.fullPath
                             
-                            this.$refs.preview.src = imgUri
+                            this.pictureName = fileEntry.fullPath
 
-                           alert(this.pictureName)
+                            // this.$refs.preview.src = imgUri
+                           alert(imgUri)
+                           alert(this.surname)
                         })
                 }, 
                 (err)=>{
