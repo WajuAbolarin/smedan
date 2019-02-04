@@ -224,10 +224,6 @@
                                             <!-- /.row -->
                                             <div class="row">
                                                 <div class="col-12">
-                                                    <ul>
-                                                        <li> {{ pictureName }} </li>
-                                                        <!-- <li> {{file.fullPath()}} </li> -->
-                                                    </ul>
                                                 </div>
                                                 <div class="col-12 mb-2 d-flex flex-column">
                                                      <div class="preview-wrapper">
@@ -374,7 +370,6 @@ export default {
                         
                     self.pictureName = imgUri
 
-                    // alert(imgUri)
                 }, 
                 
                 (err)=>{
