@@ -374,9 +374,7 @@ export default {
                         
                     self.pictureName = imgUri
 
-                    alert(imgUri)
-                    
-                    alert(self.surname)
+                    // alert(imgUri)
                 }, 
                 
                 (err)=>{
