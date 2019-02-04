@@ -40,7 +40,7 @@
                             </router-link>
                             <div class="w-auto"><a href="#" class="media">
                                 </a><a href="beneficiaries.html" class="btn btn-sm btn-primary">View Beneficiaries</a>
-                                <a href="new-beneficiary.html" class="btn btn-sm btn-primary">Add Beneficiaries</a>
+                                <router-link :to="{name:'create-beneficiary',params:{ center: center.key} }" class="btn btn-sm btn-info">Add Beneficiaries</router-link>
                             </div>
                         </li>
                     </ul>
@@ -90,7 +90,7 @@ export default {
 
 <style scoped>
 .page{
-    margin-top: 35px;
+    padding-top: 35px;
 }
 button.btn.btn-block.gradient{
     color: #ffffff;

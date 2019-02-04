@@ -1,6 +1,6 @@
 <template>
 <div class="wrapper">
-<div class="page">
+<div class="page" style="padding-top:0; margin-top:0;">
     <div class="page-content h-100">
         <div class="background"><img src="src/assets/img/background.png" alt=""></div>
         <div class="row mx-0">
@@ -24,7 +24,7 @@
                             </div>
                         </div>
                     </div>
-
+                        <button class="btn btn-info mt-3" ref="snap">Snap</button>
                 </div>
             </div>
         </div>
@@ -38,12 +38,52 @@
 <script>
 
     export default {
-        name: 'Login',
+        name: 'Login', 
         data(){
             return {
             
             }
-        } 
+        },
+
+        created(){
+            document.addEventListener('deviceready', ()=>{
+                let trigger = this.$refs.snap
+                let  options = {
+                    quality: 50,
+                    destinationType: Camera.DestinationType.FILE_URI,
+                    // In this app, dynamically set the picture source, Camera or photo gallery
+                    sourceType: Camera.PictureSourceType.PICTURE,
+                    encodingType: Camera.EncodingType.JPEG,
+                    mediaType: Camera.MediaType.PICTURE,
+                    correctOrientation: true  //Corrects Android orientation quirks
+                }
+
+                trigger.addEventListener('click', (e)=>{
+                    navigator.camera.getPicture((imgUri)=>{
+                            window.resolveLocalFileSystemURL(imgUri, function success(fileEntry) {
+                                console.log("got file: " + fileEntry.fullPath);
+                            }, function failure(){
+
+                            window.resolveLocalFileSystemURL(cordova.file.dataDirectory, function success(dirEntry) {
+
+                            dirEntry.getFile("tempFile.jpeg", { create: true, exclusive: false }, function (fileEntry) {
+
+                                console.log("got file: " + fileEntry.fullPath);
+
+                            }, onErrorCreateFile)
+
+                        }, onErrorResolveUrl)
+
+                    })
+
+                    }, 
+                    (err)=>{
+                        console.dir(err)
+                    },
+                    options)
+                })
+            })
+        }
     }
 </script>
 
