@@ -354,6 +354,7 @@ export default {
     mounted(){
         window.document.addEventListener('deviceready', ()=>{
             let trigger = this.$refs.capture
+            let self = this
 
             let  options = {
                 quality: 30,
@@ -371,11 +372,11 @@ export default {
                 navigator.camera.getPicture((imgUri)=>{
                         window.resolveLocalFileSystemURL(imgUri, function success(fileEntry) {
                             
-                            this.pictureName = fileEntry.fullPath
+                            self.pictureName = fileEntry.fullPath
 
                             // this.$refs.preview.src = imgUri
                            alert(imgUri)
-                           alert(this.surname)
+                           alert(self.surname)
                         })
                 }, 
                 (err)=>{
