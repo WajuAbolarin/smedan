@@ -40,7 +40,7 @@
                             </router-link>
                             <div class="w-auto"><a href="#" class="media">
                                 </a><a href="beneficiaries.html" class="btn btn-sm btn-primary">View Beneficiaries</a>
-                                <router-link :to="{name:'create-beneficiary',params:{ center: center.key} }" class="btn btn-sm btn-info">Add Beneficiaries</router-link>
+                                <router-link :to="{name:'create-beneficiary',params:{ center: center.key}, query: { state: center.state } }" class="btn btn-sm btn-info">Add Beneficiaries</router-link>
                             </div>
                         </li>
                     </ul>
