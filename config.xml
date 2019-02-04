@@ -11,4 +11,5 @@
     <hook src="scripts/build.js" type="before_serve" />
     <plugin name="cordova-plugin-file" spec="6.0.1" />
     <plugin name="cordova-plugin-camera" spec="4.0.3" />
+    <engine name="android" spec="~7.1.4" />
 </widget>
