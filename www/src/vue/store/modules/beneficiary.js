@@ -1,6 +1,7 @@
 
 import id from 'shortid'
 import Storage from 'localforage'
+import axios from 'axios';
 
 
 export default {
@@ -77,19 +78,31 @@ export default {
                
                 fileEntry.file(function(file){
 
-                    console.dir(file)
+                    data.append('pictureName', file )
 
-                    var reader = new FileReader
+                    return axios.post('https://e435f59b.ngrok.io/api/v1/beneficiary')
+                    .then(res => {
+                        console.dir(res)
+                        return 'success'
+                    })
+
+                    // console.dir(file)
+
+                    // var reader = new FileReader
     
-                    reader.onloadend = function(e){
-                        console.dir(e)
-                        // data.append('pictureName', e.target.result )
-                    }
+                    // reader.onloadend = function(e){
+        
+                    //     console.dir(e)
+                       
+                    //     data.append('pictureName', e.target.result )
+        
+                    //     return Promise.resolve('success')
+                        
+                    // }
 
-                    reader.readAsArrayBuffer[file]
+                    // reader.readAsArrayBuffer[file]
                 })
 
-                return Promise.resolve('success')
 
             })
 
