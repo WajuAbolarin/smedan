@@ -78,38 +78,37 @@ export default {
 
             window.resolveLocalFileSystemURL(beneficiary.pictureName, (fileEntry)=>{
                  fileEntry.file((file)=>{
-                     console.log('got file object')
-                     let reader = new FileReader()
+                        console.log('got file object')
+                        let reader = new FileReader()
     
                         reader.onload = function(e){
                     
-                        let blob = new Blob([ new Uint8Array(reader.result)], {type: 'image/jpg'})
-                        
-                        console.log('got blob')
+                            let blob = new Blob([ new Uint8Array(reader.result)], {type: 'image/jpg'})
+                            
+                            console.log('got blob')
 
-                        data.set('pictureName', blob, 'pictureName' )
-                    
-                        console.log('starting upload')
-                    
-                        axios.post('https://971c568d.ngrok.io/api/v1/beneficiary',
-                            data,
-                            {
-                                header:{
-                                'Content-Type': 'multipart/form-data'
-                                }
+                            data.set('pictureName', blob, 'pictureName' )
+                        
+                            console.log('starting upload')
+                        
+                            axios.post('https://971c568d.ngrok.io/api/v1/beneficiary',
+                                data,
+                                {
+                                    header:{
+                                    'Content-Type': 'multipart/form-data'
+                                    }
+                                })
+                                .then(res => {
+                                    console.dir(res)
                             })
-                            .then(res => {
-                                console.dir(res)
-                        })
                         
-                    }
+                        }
 
-                    reader.onerror = (e)=>{
-                        console.log(e)
-                    }
+                        reader.onerror = (e)=>{
+                            console.log(e)
+                        }
 
-                    reader.readAsArrayBuffer[file]
-
+                        reader.readAsArrayBuffer(file)
 
                 }, (err) =>{'failed to convert to file'} )
             }, (err)=> {console.log('failed to resolve filesystem' + err)})
