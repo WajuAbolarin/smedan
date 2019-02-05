@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.phonegap.helloworld" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+<widget id="com.smedan.cgs" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
     <name>Smedan</name>
     <description>
     </description>
@@ -13,4 +13,10 @@
     <plugin name="cordova-plugin-camera" spec="4.0.3" />
     <engine name="android" spec="~7.1.4" />
     <preference name="phonegap-version" value="cli-8.1.1" />
+    <allow-navigation href="*" />
+    <allow-intent href="*" />
+    <access origin="*" />
+    <access origin="https://*.phonegap.com" subdomains="true" />
+
+
 </widget>
