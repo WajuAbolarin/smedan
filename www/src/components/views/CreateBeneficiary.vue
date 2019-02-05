@@ -333,15 +333,20 @@ export default {
     
     methods:{
         createBeneficiary(){
-            this.isSubmitting = true;
-            let uneeded = ['bankList', 'isSubmitting']
-            let beneficiaryData = JSON.parse(JSON.stringify(this.$data))
+           
+           this.isSubmitting = true;
+           
+           let uneeded = ['bankList', 'isSubmitting']
+           
+           let beneficiaryData = JSON.parse(JSON.stringify(this.$data))
 
             for(let prop of uneeded)
             {
              delete beneficiaryData[prop]   
             }
             
+            beneficiaryData = Object.assign({}, beneficiaryData, {center_key: this.center})
+
             this.$store.dispatch('beneficiary/create', beneficiaryData)
            
            this.$router.push('/centers')

@@ -1,6 +1,7 @@
 
 import id from 'shortid'
 import Storage from 'localforage'
+import { db }  from './../../../firebase'
 
 
 export default {
@@ -11,7 +12,7 @@ export default {
     },
 
     getters:{
-        centers(state){
+        centers(state, rootState){
             return state.centers
         }
     },
@@ -22,7 +23,7 @@ export default {
         },
 
         add(state, newCenter){
-            state.centers.unshift(newCenter)
+            state.centers.unshift(newCenter) 
         }
     },
     

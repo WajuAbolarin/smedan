@@ -13,8 +13,13 @@
             <div class="col">
                 <ul class="nav nav-tabs login-tabs mt-3" role="tablist">
                     <li class="nav-item">
-                        <span class="nav-link border-white text-white active show">Sign in </span>
+                        <span class="nav-link border-white text-white active show">Sign in </span> 
                     </li>
+                    <template v-if="users.length">
+                        <li :key="user.email" v-for="user in users">
+                            {{user.name}}, ({{user.email}})
+                        </li>
+                    </template>
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane active" role="tabpanel">
@@ -35,15 +40,24 @@
 </div>
 </template>
 <script>
+import { db }  from './../../firebase.js'
 
-    export default {
-        name: 'Login', 
-        data(){
-            return {
-            
-            }
-        },
+
+export default {
+    name: 'Login', 
+    data(){
+        return {
+            users : []
+        }
+    },
+    created(){
+        db.collection('Users').get().then(snapShot => {
+            snapShot.forEach(doc =>{
+                this.users.push(doc.data())
+            })
+        })
     }
+}
 </script>
 
 <style>

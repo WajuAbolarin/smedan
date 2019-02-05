@@ -10,8 +10,10 @@ export default {
         beneficiaries : [],
     },
 
-    getters:{
-    
+    getters: {
+        stateBeneficiaries: state => (stateToGet) =>{
+            return state.beneficiaries.filter( ben => ben.center_key === stateToGet)
+        }
     },
     
     mutations:{
@@ -31,6 +33,8 @@ export default {
             
             Storage.getItem('SMEDAN_BENEFICIARIES')
             .then( savedBeneficiaries => {
+                
+                savedBeneficiaries = savedBeneficiaries || []
 
                 savedBeneficiaries.push(newBeneficiaryData)
 

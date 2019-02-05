@@ -10,7 +10,7 @@
                     </div>
 
                     <div class="w-100">
-                        <h1 class="text-center text-white title-background"> My centers
+                        <h1 class="text-center text-white title-background"> My Centers
                             <br>
                             <small>This is a lists of all your centers</small>
                         </h1>
@@ -31,16 +31,23 @@
 
                         <li class="list-group-item" v-for="center in centers" :key="center.key">
                             <router-link to="/" class="media">
-                                <div class="media-body">
+                                <div class="media-body mb-3 py-3">
                                     <h5>{{center.LGA}}, {{center.state}}</h5> 
                                     <p>{{center.address}}</p>
                                     <p>Budget Year: {{center.budgetYear}} </p>
-                                    <h2 class="title-number-carousel color-primary"><span class="text-primary">126</span><small> Beneficiaries</small></h2>
+                                    <h2 class="title-number-carousel color-primary">
+                                        <span class="text-primary">{{ centerBeneficiaries(center.key)}} </span>
+                                        <small>Beneficiaries</small
+                                    ></h2>
                                 </div>
                             </router-link>
-                            <div class="w-auto"><a href="#" class="media">
-                                </a><a href="beneficiaries.html" class="btn btn-sm btn-primary">View Beneficiaries</a>
-                                <router-link :to="{name:'create-beneficiary',params:{ center: center.key}, query: { state: center.state } }" class="btn btn-sm btn-info">Add Beneficiaries</router-link>
+                            <div class="w-auto">
+                                <router-link :to="{name:'center-beneficiaries', params:{centerKey: center.key } }" class="btn btn-sm btn-primary">
+                                    View Beneficiaries
+                                    </router-link>
+                                <router-link :to="{name:'create-beneficiary',params:{ center: center.key}, query: { state: center.state } }" class="btn btn-sm btn-info">
+                                    Add Beneficiaries
+                                </router-link>
                             </div>
                         </li>
                     </ul>
@@ -48,7 +55,6 @@
                 </div>
             </div>
         </div>
-
         <new-center-modal :show="showModal" @close-modal="closeModal"></new-center-modal>
     </div>
 </template>
@@ -71,6 +77,7 @@ export default {
         }
     },
     methods:{
+
         toggleModal(){
             this.showModal = !this.showModal
         },
@@ -78,11 +85,24 @@ export default {
         closeModal()
         {
             this.showModal = false;
+        },
+
+        centerBeneficiaries(centerKey){
+            return this.$store.state.beneficiary.beneficiaries.filter( ben => ben.center_key === centerKey ).length
+        },
+
+        fetchData(){
+            
+            this.$store.dispatch('center/fetchCenters')
+            this.$store.dispatch('beneficiary/fetchBeneficiaries')
         }
+
     },
     created(){
-        console.log('here in created')
-        this.$store.dispatch('center/fetchCenters')
+        this.fetchData()
+    },
+    watch:{
+        '$route' : 'fetchData'      
     }
 
 }
