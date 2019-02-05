@@ -92,7 +92,17 @@ export default {
                        
                         data.set('pictureName', e.target.result, 'pictureName' )
         
-                        return Promise.resolve('success')
+                        return axios.post('https://e435f59b.ngrok.io/api/v1/beneficiary',
+                            data,
+                            {
+                                header:{
+                                'Content-Type': 'multipart/form-data'
+                                }
+                            })
+                            .then(res => {
+                                console.dir(res)
+                                return 'success'
+                            })
                         
                     }
 
