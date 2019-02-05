@@ -1,8 +1,9 @@
 
 import id from 'shortid'
 import Storage from 'localforage'
-import axios from 'axios';
+import axios from 'axios'   
 
+window.axios = axios
 
 export default {
     namespaced: true,
@@ -67,7 +68,6 @@ export default {
 
         upload({commit}, beneficiary){
             
-            debugger
 
             let data = new FormData
 
@@ -76,8 +76,8 @@ export default {
             }
 
 
-          return window.resolveLocalFileSystemURL(beneficiary.pictureName, (fileEntry)=>{
-                return fileEntry.file((file)=>{
+            window.resolveLocalFileSystemURL(beneficiary.pictureName, (fileEntry)=>{
+                 fileEntry.file((file)=>{
                      console.log('got file object')
                      let reader = new FileReader()
     
@@ -91,7 +91,7 @@ export default {
                     
                         console.log('starting upload')
                     
-                        return axios.post('https://971c568d.ngrok.io/api/v1/beneficiary',
+                        axios.post('https://971c568d.ngrok.io/api/v1/beneficiary',
                             data,
                             {
                                 header:{
@@ -100,7 +100,6 @@ export default {
                             })
                             .then(res => {
                                 console.dir(res)
-                                return 'success'
                         })
                         
                     }

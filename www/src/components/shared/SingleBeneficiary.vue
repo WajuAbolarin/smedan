@@ -44,18 +44,18 @@ export default {
             
             this.$store
                 .dispatch('beneficiary/upload', this.beneficiary)
-                .then( uploadStatus =>{
-                    this.isUploading = false            
+                // .then( uploadStatus =>{
+                //     this.isUploading = false            
                     
-                    if(uploadStatus === 'failed'){
-                        this.status = 'Upload failed!'
-                       return res('done')
-                    }
-                    console.log(uploadStatus)
-                    // this.status = 'Upload Successful!'
-                    return res()
+                //     if(uploadStatus === 'failed'){
+                //         this.status = 'Upload failed!'
+                //        return res('done')
+                //     }
+                //     console.log(uploadStatus)
+                //     // this.status = 'Upload Successful!'
+                //     return res()
                 
-                })
+                // })
 
             })
             
