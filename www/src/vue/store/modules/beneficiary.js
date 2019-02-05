@@ -80,7 +80,13 @@ export default {
 
                     data.append('pictureName', file )
 
-                    return axios.post('https://e435f59b.ngrok.io/api/v1/beneficiary')
+                    return axios.post('https://e435f59b.ngrok.io/api/v1/beneficiary',
+                    data,
+                    {
+                        header:{
+                        'Content-Type': 'multipart/form-data'
+                        }
+                    })
                     .then(res => {
                         console.dir(res)
                         return 'success'
