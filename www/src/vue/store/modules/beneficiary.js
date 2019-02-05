@@ -78,21 +78,14 @@ export default {
                
                 fileEntry.file(function(file){
 
-                    // data.append('pictureName', file )
-
-                  
-
-                    // console.dir(file)
-
                     var reader = new FileReader
     
                     reader.onloadend = function(e){
+                       let blob = new Blob([ new Uint8Array(e.target.result)], {type: 'image/jpg'})
+                        
+                       data.set('pictureName', blob, 'pictureName' )
         
-                        console.dir(e)
-                       
-                        data.set('pictureName', e.target.result, 'pictureName' )
-        
-                        return axios.post('https://e435f59b.ngrok.io/api/v1/beneficiary',
+                        return axios.post('https://971c568d.ngrok.io/api/v1/beneficiary',
                             data,
                             {
                                 header:{
