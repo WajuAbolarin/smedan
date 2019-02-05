@@ -30,7 +30,7 @@
                     <ul class="list-group">
 
                         <li class="list-group-item" v-for="center in centers" :key="center.key">
-                            <router-link to="/" class="media">
+                            <div to="" class="media">
                                 <div class="media-body mb-3 py-3">
                                     <h5>{{center.LGA}}, {{center.state}}</h5> 
                                     <p>{{center.address}}</p>
@@ -40,7 +40,7 @@
                                         <small>Beneficiaries</small
                                     ></h2>
                                 </div>
-                            </router-link>
+                            </div>
                             <div class="w-auto">
                                 <router-link :to="{name:'center-beneficiaries', params:{centerKey: center.key } }" class="btn btn-sm btn-primary">
                                     View Beneficiaries

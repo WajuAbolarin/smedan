@@ -62,6 +62,37 @@ export default {
                 
             })
             
+        },
+
+        upload({commit}, beneficiary){
+            
+            
+            let data = new FormData
+
+            for(let[field, value] of Object.entries(beneficiary) ){
+                data.append(field, value)
+            }
+
+            window.resolveLocalFileSystemURL(beneficiary.pictureName, (fileEntry)=>{
+               
+                fileEntry.file(function(file){
+
+                    console.dir(file)
+
+                    var reader = new FileReader
+    
+                    reader.onloadend = function(e){
+                        console.dir(e)
+                        // data.append('pictureName', e.target.result )
+                    }
+
+                    reader.readAsArrayBuffer[file]
+                })
+
+                return Promise.resolve('success')
+
+            })
+
         }
     }
 }

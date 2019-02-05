@@ -20,24 +20,18 @@
                     </div>
                     <!-- <h2 class="" style="color: #ffffff;">Top On Going Projects</h2> -->
                     <h5 v-if="!beneficiaries.length" class="no-beneficiaries">There are no offline beneficiaries for this center!</h5>
+                    
+                    <ul class="list-group" v-else>
+                    
+                        <Single-Beneficiary
+                            tag="li"  
+                            v-for="beneficiary in beneficiaries" 
+                            :key="beneficiary.key" 
+                            :beneficiary="beneficiary">
 
-                    <template v-else >
-                        <ul class="list-group" >
-                            <li class="list-group-item h-100" v-for="beneficiary in beneficiaries" :key="beneficiary.key">
-                                <div href="#" class="d-flex justify-content-between py-2">
-                                    <div>
-                                        <h5>{{fullname(beneficiary)}}</h5> 
-                                        <p>Gender: {{beneficiary.gender}} </p>
-                                    </div> 
-                                    <div class="w-auto align-self-end">
-                                        <!-- <a href="view-beneficiary.html" class="btn btn-sm btn-primary">View</a> -->
-                                        <a href="edit-beneficiary.html" class="btn btn-sm btn-primary">Upload</a>
-                                    </div>
-                                </div>
-                            </li>
-
-                        </ul>
-                    </template>
+                        </Single-Beneficiary>
+                    </ul>
+                
                 </div>
             </div>
         </div>
@@ -46,11 +40,14 @@
 
 <script>
 import AppHeader from './../shared/AppHeader.vue'
+import SingleBeneficiary from './../shared/SingleBeneficiary.vue'
 
 
 export default {
     name: 'CenterBeneficiaries',
-    components: {'app-header' :AppHeader},
+    
+    components: {'app-header' :AppHeader, 'single-beneficiary' : SingleBeneficiary},
+
     props: {
         centerKey:{
             type: String,
@@ -67,11 +64,6 @@ export default {
         }
 
     },
-    methods:{
-        fullname(person){
-            return person.surname + ' ' + person.otherNames
-        }
-    }
 
 }
 </script>

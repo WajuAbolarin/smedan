@@ -58,6 +58,7 @@
         "firebase": "^5.8.2",
         "localforage": "^1.7.3",
         "phonegap": "^6.4.4",
+        "regenerator": "^0.13.3",
         "shortid": "^2.2.14",
         "vue": "^2.1.10",
         "vue-hot-reload-api": "2.0.1",
@@ -68,6 +69,7 @@
         "vuex": "^2.1.2"
     },
     "devDependencies": {
+        "@babel/preset-env": "^7.3.1",
         "babelify": "^7.2.0",
         "browserify-hmr": "^0.3.1",
         "cross-env": "^2.0.0",
