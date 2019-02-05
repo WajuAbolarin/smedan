@@ -78,35 +78,25 @@ export default {
                
                 fileEntry.file(function(file){
 
-                    data.append('pictureName', file )
+                    // data.append('pictureName', file )
 
-                    return axios.post('https://e435f59b.ngrok.io/api/v1/beneficiary',
-                    data,
-                    {
-                        header:{
-                        'Content-Type': 'multipart/form-data'
-                        }
-                    })
-                    .then(res => {
-                        console.dir(res)
-                        return 'success'
-                    })
+                  
 
                     // console.dir(file)
 
-                    // var reader = new FileReader
+                    var reader = new FileReader
     
-                    // reader.onloadend = function(e){
+                    reader.onloadend = function(e){
         
-                    //     console.dir(e)
+                        console.dir(e)
                        
-                    //     data.append('pictureName', e.target.result )
+                        data.set('pictureName', e.target.result, 'pictureName' )
         
-                    //     return Promise.resolve('success')
+                        return Promise.resolve('success')
                         
-                    // }
+                    }
 
-                    // reader.readAsArrayBuffer[file]
+                    reader.readAsArrayBuffer[file]
                 })
 
 
