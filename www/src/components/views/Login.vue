@@ -15,9 +15,6 @@
                     <li class="nav-item">
                         <span class="nav-link border-white text-white active show">Sign in </span> 
                     </li>
-                    <li>
-                        {{ response}}
-                    </li>
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane active" role="tabpanel">
@@ -44,15 +41,8 @@ export default {
     name: 'Login', 
     data(){
         return {
-            response: ''
         }
     },
-    created(){
-        let vm = this
-
-        axios.post('https://e435f59b.ngrok.io/api/v1/beneficiary', {name : 'Waju'})
-        .then(resp => vm.response =  resp.data.name)
-    }   
 }
 </script>
 

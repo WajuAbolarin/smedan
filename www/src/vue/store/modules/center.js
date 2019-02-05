@@ -1,6 +1,7 @@
 
 import id from 'shortid'
 import Storage from 'localforage'
+import axios from 'axios'
 
 
 export default {
@@ -30,18 +31,48 @@ export default {
         create({commit, state}, center){
             let newCenter =  Object.assign({}, center, {key: id.generate(), isOffline: true})
             
-            Storage.getItem('SMEDAN_CENTERS')
-            .then( savedCenters => {
-                savedCenters = savedCenters ? savedCenters : []
-                savedCenters.push(newCenter)
-                commit('add', newCenter)
-                return savedCenters
+            axios.post('https://e435f59b.ngrok.io/api/v1/center', {center: newCenter})
+                .then(resp =>{
+                    if(resp.data.status === 'success'){
+                        newCenter.isOffline = false
+                    }
+                    
+                    Storage.getItem('SMEDAN_CENTERS')
+                    .then( savedCenters => {
+                        savedCenters = savedCenters ? savedCenters : []
+                        savedCenters.push(newCenter)
+                        commit('add', newCenter)
+                        return savedCenters
 
-            }).then(newCenters => {
-                Storage.setItem('SMEDAN_CENTERS', newCenters)
-                .then(savedValues => console.dir('updated storage'))
-            })
+                    })
+                    .then(newCenters => {
+                    
+                        Storage.setItem('SMEDAN_CENTERS', newCenters)
+                                .then(savedValues => console.dir('updated storage'))
+                    
+                    })
 
+                   
+                })
+                .catch(err => { 
+                    console.log(err)
+                    
+                    Storage.getItem('SMEDAN_CENTERS')
+                    .then( savedCenters => {
+                        savedCenters = savedCenters ? savedCenters : []
+                        savedCenters.push(newCenter)
+                        commit('add', newCenter)
+                        return savedCenters
+
+                    })
+                    .then(newCenters => {
+                    
+                        Storage.setItem('SMEDAN_CENTERS', newCenters)
+                                .then(savedValues => console.dir('updated storage'))
+                    
+                    })
+
+                })
         },
 
         fetchCenters({commit}){
