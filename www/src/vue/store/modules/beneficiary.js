@@ -67,24 +67,30 @@ export default {
 
         upload({commit}, beneficiary){
             
-            
+            debugger
+
             let data = new FormData
 
             for(let[field, value] of Object.entries(beneficiary) ){
                 data.append(field, value)
             }
 
-            window.resolveLocalFileSystemURL(beneficiary.pictureName, (fileEntry)=>{
-               
-                fileEntry.file(function(file){
 
-                    var reader = new FileReader
+          return window.resolveLocalFileSystemURL(beneficiary.pictureName, (fileEntry)=>{
+                return fileEntry.file((file)=>{
+                     console.log('got file object')
+                     var reader = new FileReader
     
-                    reader.onloadend = function(e){
-                       let blob = new Blob([ new Uint8Array(e.target.result)], {type: 'image/jpg'})
+                        reader.onloadend = function(e){
+                    
+                        let blob = new Blob([ new Uint8Array(e.target.result)], {type: 'image/jpg'})
                         
-                       data.set('pictureName', blob, 'pictureName' )
-        
+                        console.log('got blob')
+
+                        data.set('pictureName', blob, 'pictureName' )
+                    
+                        console.log('starting upload')
+                    
                         return axios.post('https://971c568d.ngrok.io/api/v1/beneficiary',
                             data,
                             {
@@ -95,15 +101,19 @@ export default {
                             .then(res => {
                                 console.dir(res)
                                 return 'success'
-                            })
+                        })
                         
                     }
 
+                    reader.onerror = (e)=>{
+                        console.log(e)
+                    }
+
                     reader.readAsArrayBuffer[file]
-                })
 
 
-            })
+                }, (err) =>{'failed to convert to file'} )
+            }, (err)=> {console.log('failed to resolve filesystem' + err)})
 
         }
     }

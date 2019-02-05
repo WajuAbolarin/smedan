@@ -51,8 +51,8 @@ export default {
                         this.status = 'Upload failed!'
                        return res('done')
                     }
-                    
-                    this.status = 'Upload Successful!'
+                    console.log(uploadStatus)
+                    // this.status = 'Upload Successful!'
                     return res()
                 
                 })
