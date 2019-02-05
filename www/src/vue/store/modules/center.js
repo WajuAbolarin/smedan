@@ -1,7 +1,6 @@
 
 import id from 'shortid'
 import Storage from 'localforage'
-import { db }  from './../../../firebase'
 
 
 export default {
