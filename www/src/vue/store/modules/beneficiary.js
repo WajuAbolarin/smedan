@@ -79,11 +79,11 @@ export default {
           return window.resolveLocalFileSystemURL(beneficiary.pictureName, (fileEntry)=>{
                 return fileEntry.file((file)=>{
                      console.log('got file object')
-                     var reader = new FileReader
+                     let reader = new FileReader()
     
-                        reader.onloadend = function(e){
+                        reader.onload = function(e){
                     
-                        let blob = new Blob([ new Uint8Array(e.target.result)], {type: 'image/jpg'})
+                        let blob = new Blob([ new Uint8Array(reader.result)], {type: 'image/jpg'})
                         
                         console.log('got blob')
 
