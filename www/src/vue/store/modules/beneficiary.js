@@ -1,7 +1,6 @@
-
 import id from 'shortid'
 import Storage from 'localforage'
-import axios from 'axios'   
+import axios from 'axios'
 
 window.axios = axios
 
@@ -9,109 +8,131 @@ export default {
     namespaced: true,
 
     state: {
-        beneficiaries : [],
+        beneficiaries: [],
     },
 
     getters: {
-        stateBeneficiaries: state => (stateToGet) =>{
-            return state.beneficiaries.filter( ben => ben.center_key === stateToGet)
+        stateBeneficiaries: state => (stateToGet) => {
+            return state.beneficiaries.filter(ben => ben.center_key === stateToGet)
         }
     },
-    
-    mutations:{
-        add(state, newBenficiary){
+
+    mutations: {
+        add(state, newBenficiary) {
             state.benficiaries.unshift(newBenficiary)
         },
 
-        setBeneficiaries(state, beneficiaries){
+        setBeneficiaries(state, beneficiaries) {
             state.beneficiaries = beneficiaries
         }
 
     },
-    
-    actions: { 
-        create({commit, state}, beneficiaryData){
-            let newBeneficiaryData =  Object.assign({}, beneficiaryData, {key: id.generate(), isOffline: true})
-            
+
+    actions: {
+        create({ commit, state }, beneficiaryData) {
+            let newBeneficiaryData = Object.assign({}, beneficiaryData, { key: id.generate(), isOffline: true })
+
             Storage.getItem('SMEDAN_BENEFICIARIES')
-            .then( savedBeneficiaries => {
-                
-                savedBeneficiaries = savedBeneficiaries || []
+                .then(savedBeneficiaries => {
 
-                savedBeneficiaries.push(newBeneficiaryData)
+                    savedBeneficiaries = savedBeneficiaries || []
 
-                return savedBeneficiaries
+                    savedBeneficiaries.push(newBeneficiaryData)
 
-            }).then(newBeneficiaries => {
-                
-                Storage.setItem('SMEDAN_BENEFICIARIES', newBeneficiaries)
+                    return savedBeneficiaries
+
+                }).then(newBeneficiaries => {
+
+                    Storage.setItem('SMEDAN_BENEFICIARIES', newBeneficiaries)
                         .then(savedValues => console.dir('updated storage'))
-            })
+                })
 
         },
 
-        fetchBeneficiaries({commit}){
+        fetchBeneficiaries({ commit }) {
             //fetch local
             Storage.getItem('SMEDAN_BENEFICIARIES')
-            .then( beneficiaries => {
-                let offline = beneficiaries ? beneficiaries : []
+                .then(beneficiaries => {
+                    let offline = beneficiaries ? beneficiaries : []
 
-                //fetch online
-                let online = []
-    
-                //combine and mutate state
-                commit('setBeneficiaries', [...offline, ...online] )
-                
-            })
-            
+                    //fetch online
+                    let online = []
+
+                    //combine and mutate state
+                    commit('setBeneficiaries', [...offline, ...online])
+
+                })
+
         },
 
-        upload({commit}, beneficiary){
-            
+        upload({ commit }, beneficiary) {
+
 
             let data = new FormData
 
-            for(let[field, value] of Object.entries(beneficiary) ){
+            for (let [field, value] of Object.entries(beneficiary)) {
                 data.append(field, value)
             }
 
 
-            window.resolveLocalFileSystemURL(beneficiary.pictureName, (fileEntry)=>{
-                 fileEntry.file((file)=>{
-                        console.log('got file object')
-                        let reader = new FileReader()
-    
-                        reader.onload = function(e){
-                    
-                            let blob = new Blob([ new Uint8Array(reader.result)], {type: 'image/jpg'})
-                            
-                            console.log('got blob')
+            window.resolveLocalFileSystemURL(beneficiary.pictureName, (fileEntry) => {
+                fileEntry.file((file) => {
+                    console.log('got file object')
+                    let reader = new FileReader()
 
-                            data.set('pictureName', blob, 'pictureName' )
-                        
-                            console.log('starting upload')
-                        
-                            axios.post('https://www.smedancgs.com.ng/api/v1/beneficiary',
-                                data,
-                                {
-                                    header:{
-                                    'Content-Type': 'multipart/form-data'
+                    reader.onload = function(e) {
+
+                        let blob = new Blob([new Uint8Array(reader.result)], { type: 'image/jpg' })
+
+                        console.log('got blob')
+
+                        data.set('pictureName', blob, 'pictureName')
+
+                        console.log('starting upload')
+
+                        axios.post('https://www.smedancgs.com.ng/api/v1/beneficiary',
+                                data, {
+                                    header: {
+                                        'Content-Type': 'multipart/form-data'
                                     }
                                 })
-                                .then(res => {
-                                    console.dir(res)
+                            .then(res => {
+
+                                if (res.data.status === 'success') {
+
+                                    Storage.getItem('SMEDAN_BENEFICIARIES')
+                                        .then(bens => {
+
+                                            bens = bens.fiter(b => b.key !== beneficiary.key)
+
+                                            bens.push(Object.assign({}, beneficiary, { isOffline: false }))
+
+                                            return bens
+
+                                        })
+                                        .then(newBens => {
+
+                                            Storage.setItem('SMEDAN_BENEFICIARIES', newBens)
+
+                                            return 'success'
+
+                                        })
+
+                                }
+
+                                return 'failed'
                             })
-                        
-                        }
 
-                        reader.onerror = (e)=>{
-                            console.log(e)
-                        }
+                    }
 
-                        reader.readAsArrayBuffer(file)
+                    reader.onerror = (e) => {
+                        console.log(e)
+                    }
 
-                }, (err) =>{'failed to convert to file'} )
-            }, (err)=> {console.log('failed to resolve filesystem' + err)})
+                    reader.readAsArrayBuffer(file)
+
+                }, (err) => { 'failed to convert to file' })
+            }, (err) => { console.dir(err) })
 
         }
     }
