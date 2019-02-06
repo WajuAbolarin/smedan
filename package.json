@@ -8,6 +8,7 @@
         "serve": "phonegap serve --port 3000",
         "dev": "npm-run-all --parallel watchify serve",
         "build": "cross-env NODE_ENV=production browserify -e www/src/main.js | uglifyjs -c warnings=false -m > www/dist/build.js & cordova build --release --device --target=",
+        "build:code": "cross-env NODE_ENV=production browserify -e www/src/main.js | uglifyjs -c warnings=false -m > www/dist/build.js",
         "test": "karma start karma.conf.js",
         "ios": "cordova run ios",
         "android": "cordova run android",
