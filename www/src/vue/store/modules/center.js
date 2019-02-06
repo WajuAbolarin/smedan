@@ -31,7 +31,7 @@ export default {
         create({commit, state}, center){
             let newCenter =  Object.assign({}, center, {key: id.generate(), isOffline: true})
             
-            axios.post('https://971c568d.ngrok.io/api/v1/center', {center: newCenter})
+            axios.post('https://www.smedancgs.com.ng/api/v1/center', {center: newCenter})
                 .then(resp =>{
                     if(resp.data.status === 'success'){
                         newCenter.isOffline = false

@@ -91,7 +91,7 @@ export default {
                         
                             console.log('starting upload')
                         
-                            axios.post('https://971c568d.ngrok.io/api/v1/beneficiary',
+                            axios.post('https://www.smedancgs.com.ng/api/v1/beneficiary',
                                 data,
                                 {
                                     header:{
