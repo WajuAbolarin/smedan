@@ -13,7 +13,7 @@ export default {
 
     getters: {
         stateBeneficiaries: state => (stateToGet) => {
-            return state.beneficiaries.filter(ben => ben.center_key === stateToGet)
+            return state.beneficiaries.filter(ben => ben.center_key === stateToGet && ben.isOffline)
         }
     },
 
@@ -75,8 +75,8 @@ export default {
             }
 
 
-            window.resolveLocalFileSystemURL(beneficiary.pictureName, (fileEntry) => {
-                fileEntry.file((file) => {
+           window.resolveLocalFileSystemURL(beneficiary.pictureName, (fileEntry) => {
+                 fileEntry.file((file) => {
                     console.log('got file object')
                     let reader = new FileReader()
 
@@ -90,7 +90,7 @@ export default {
 
                         console.log('starting upload')
 
-                        axios.post('https://www.smedancgs.com.ng/api/v1/beneficiary',
+                      return  axios.post('https://www.smedancgs.com.ng/api/v1/beneficiary',
                                 data, {
                                     header: {
                                         'Content-Type': 'multipart/form-data'
@@ -131,8 +131,14 @@ export default {
 
                     reader.readAsArrayBuffer(file)
 
-                }, (err) => { 'failed to convert to file' })
-            }, (err) => { console.dir(err) })
+                }, (err) => { 
+                    'failed to convert to file'
+                    return 'failed'
+                 })
+                }, (err) => { 
+                console.dir(err)
+                return 'failed'
+             })
 
         }
     }

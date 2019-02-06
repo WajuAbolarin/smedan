@@ -36,27 +36,23 @@ export default {
         },
     
        upload(){
-
-            this.isUploading = true
-            this.status = 'Uploading...'
-
+            // this.isUploading = true
+            // this.status = 'Uploading...'
+            // this.beneficiary.isOffline = false
             return new Promise( (res, rej) => {
-            
-            this.$store
-                .dispatch('beneficiary/upload', this.beneficiary)
-                // .then( uploadStatus =>{
-                //     this.isUploading = false            
-                    
-                //     if(uploadStatus === 'failed'){
-                //         this.status = 'Upload failed!'
-                //        return res('done')
-                //     }
-                //     console.log(uploadStatus)
-                //     // this.status = 'Upload Successful!'
-                //     return res()
-                
-                // })
-
+                this.$store
+                    .dispatch('beneficiary/upload', this.beneficiary)
+                    .then( uploadStatus =>{
+                        this.isUploading = false            
+                        
+                        if(uploadStatus == 'failed'){
+                            // this.status = 'Upload failed!'
+                           return res('done')
+                        }
+                        console.log(uploadStatus)
+                        // this.status = 'Upload Successful!'
+                        return res()
+                    })
             })
             
         }
