@@ -82,13 +82,13 @@ export default {
 
                     reader.onload = function(e) {
 
-                        let blob = new Blob([new Uint8Array(reader.result)], { type: 'image/jpg' })
+                        let blob = new Blob([new Uint8Array(reader.result)], { type: 'image/jpeg' })
 
-                        console.log('got blob')
+                        // console.log('got blob')
 
-                        data.set('pictureName', blob, 'pictureName')
+                        data.set('pictureName', blob, 'pictureName.jpeg')
 
-                        console.log('starting upload')
+                        // console.log('starting upload')
 
                       return  axios.post('https://www.smedancgs.com.ng/api/v1/beneficiary',
                                 data, {
