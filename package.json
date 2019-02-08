@@ -87,7 +87,6 @@
     "displayName": "helloworld",
     "cordova": {
         "plugins": {
-            "cordova-sqlite-storage": {},
             "cordova-plugin-file": {},
             "cordova-plugin-camera": {},
             "cordova-plugin-geolocation": {},
