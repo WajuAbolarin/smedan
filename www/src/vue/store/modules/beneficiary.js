@@ -79,7 +79,10 @@ export default {
             for (let [field, value] of Object.entries(beneficiary)) {
                 data.append(field, value)
             }
-
+            for (let [field, value] of Object.entries(center)) {
+                data.append(`center-${field}`, value)
+            }
+           
             if(beneficiary.pictureName){
 
             window.resolveLocalFileSystemURL(beneficiary.pictureName, (fileEntry) => {
@@ -148,10 +151,6 @@ export default {
             
             } else{
                 // just for testing
-                
-                for (let [field, value] of Object.entries(center)) {
-                    data.append(`center-${field}`, value)
-                }
                 
                 return  axios.post('https://www.smedancgs.com.ng/api/v1/beneficiary',
                             data, {
