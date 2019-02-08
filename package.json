@@ -5,7 +5,7 @@
     "main": "index.js",
     "scripts": {
         "watchify": "watchify -vd -p browserify-hmr -e www/src/main.js -o www/dist/build.js",
-        "serve": "phonegap serve --port 3000",
+        "serve": "phonegap serve --port 5500",
         "dev": "npm-run-all --parallel watchify serve",
         "build": "cross-env NODE_ENV=production browserify -e www/src/main.js | uglifyjs -c warnings=false -m > www/dist/build.js & cordova build --release --device --target=",
         "build:code": "cross-env NODE_ENV=production browserify -e www/src/main.js | uglifyjs -c warnings=false -m > www/dist/build.js",

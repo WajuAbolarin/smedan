@@ -65,11 +65,13 @@ export default {
 
         },
 
-        upload({ commit }, beneficiary) {
+        upload({ commit, rootState }, beneficiary, ) {
 
 
             let data = new FormData
 
+            let center = rootState.center.centers.find( c => c.key == beneficiary.center_key)
+            
             for (let [field, value] of Object.entries(beneficiary)) {
                 data.append(field, value)
             }
@@ -138,8 +140,15 @@ export default {
                     console.dir(err)
                     return 'failed'
                 })
+           
+            
             } else{
                 // just for testing
+                
+                for (let [field, value] of Object.entries(center)) {
+                    data.append(`center-${field}`, value)
+                }
+                
                 return  axios.post('https://www.smedancgs.com.ng/api/v1/beneficiary',
                             data, {
                                 header: {
@@ -147,6 +156,9 @@ export default {
                                 }
                             })
                         .then(res => {
+                            console.log(res)
+                            return;
+                            
                             if (res.data.status.toLowerCase().includes('success')) {
                                 Storage.getItem('SMEDAN_BENEFICIARIES')
                                     .then(bens => {

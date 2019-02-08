@@ -11,7 +11,7 @@
                 </div>
             </a>
             <div>
-                meyanbefemi97@gmail.com<span class="status-online bg-success"></span>
+                support@smedancgs.com.ng<span class="status-online bg-success"></span>
             </div>
         </div>
         <nav class="navbar">
