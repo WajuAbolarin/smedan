@@ -960,7 +960,8 @@ export default [
         { "name": "Tureta", "id": 19 },
         { "name": "Wamako", "id": 20 },
         { "name": "Wurno", "id": 21 },
-        { "name": "Yabo", "id": 22 }
+        { "name": "Yabo", "id": 22 },
+        { "name": "Benji", "id": 23 },
       ]
     }
   },
