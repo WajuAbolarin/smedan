@@ -89,7 +89,7 @@ export default {
         },
 
         availableLGAS(){
-            return this.chosenState ? this.$store.state.states.find(item => item.state.name.includes(this.chosenState)).state.locals : []
+            return this.chosenState ? this.$store.getters.getLGAs(this.chosenState): []
         },
         formIsInvalid(){
             const {chosenState, chosenLGA, budgetYear, address} = this.$data

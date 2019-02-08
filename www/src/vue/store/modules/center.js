@@ -13,7 +13,9 @@ export default {
 
     getters:{
         centers(state, rootState){
-            return state.centers
+            return state.centers.sort((a, b ) => {
+                return a.LGA > b.LGA ? 1 : -1
+            })
         }
     },
     
@@ -31,47 +33,19 @@ export default {
         create({commit, state}, center){
             let newCenter =  Object.assign({}, center, {key: id.generate(), isOffline: true})
             
-            axios.post('https://www.smedancgs.com.ng/api/v1/center', {center: newCenter})
-                .then(resp =>{
-                    if(resp.data.status === 'success'){
-                        newCenter.isOffline = false
-                    }
-                    
-                    Storage.getItem('SMEDAN_CENTERS')
-                    .then( savedCenters => {
-                        savedCenters = savedCenters ? savedCenters : []
-                        savedCenters.push(newCenter)
-                        commit('add', newCenter)
-                        return savedCenters
+            Storage.getItem('SMEDAN_CENTERS')
+                .then( savedCenters => {
+                    savedCenters = savedCenters ? savedCenters : []
+                    savedCenters.push(newCenter)
+                    commit('add', newCenter)
+                    return savedCenters
 
-                    })
-                    .then(newCenters => {
-                    
-                        Storage.setItem('SMEDAN_CENTERS', newCenters)
-                                .then(savedValues => console.dir('updated storage'))
-                    
-                    })
-
-                   
                 })
-                .catch(err => { 
-                    console.log(err)
-                    
-                    Storage.getItem('SMEDAN_CENTERS')
-                    .then( savedCenters => {
-                        savedCenters = savedCenters ? savedCenters : []
-                        savedCenters.push(newCenter)
-                        commit('add', newCenter)
-                        return savedCenters
-
-                    })
-                    .then(newCenters => {
-                    
-                        Storage.setItem('SMEDAN_CENTERS', newCenters)
-                                .then(savedValues => console.dir('updated storage'))
-                    
-                    })
-
+                .then(newCenters => {
+                
+                    Storage.setItem('SMEDAN_CENTERS', newCenters)
+                            .then(savedValues => console.dir('updated storage'))
+                
                 })
         },
 
@@ -79,9 +53,7 @@ export default {
             //fetch local
             Storage.getItem('SMEDAN_CENTERS')
             .then( centers => {
-                let offlineCenters = centers ? centers : []
-
-                //fetch online
+                let offlineCenters = centers ? centers : []                
                 let onlineCenters = []
     
                 //combine and mutate state

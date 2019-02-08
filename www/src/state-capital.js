@@ -19,7 +19,8 @@ export default [
         { "name": "Ukwa West", "id": 13 },
         { "name": "Umuahia North", "id": 14 },
         { "name": "Umuahia South", "id": 15 },
-        { "name": "Umu Nneochi", "id": 16 }
+        { "name": "Umu Nneochi", "id": 16 },
+        { "name": "Aba North", "id": 17 }
       ]
     }
   },
@@ -47,7 +48,8 @@ export default [
         { "name": "Song", "id": 17 },
         { "name": "Toungo", "id": 18 },
         { "name": "Yola North", "id": 19 },
-        { "name": "Yola South", "id": 20 }
+        { "name": "Yola South", "id": 20 },
+        { "name": "Demsa", "id": 21 }
       ]
     }
   },
@@ -85,7 +87,8 @@ export default [
         { "name": "Ukanafun", "id": 27 },
         { "name": "Uruan", "id": 28 },
         { "name": "Urue-Offong/Oruko", "id": 29 },
-        { "name": "Uyo", "id": 30 }
+        { "name": "Uyo", "id": 30 },
+        { "name": "Abak", "id": 31 }
       ]
     }
   },
@@ -113,7 +116,8 @@ export default [
         { "name": "Onitsha South", "id": 17 },
         { "name": "Orumba North", "id": 18 },
         { "name": "Orumba South", "id": 19 },
-        { "name": "Oyi", "id": 20 }
+        { "name": "Oyi", "id": 20 },
+        { "name": "Aguata", "id": 21 }
       ]
     }
   },
@@ -140,7 +144,8 @@ export default [
         { "name": "Tafawa Balewa", "id": 16 },
         { "name": "Toro", "id": 17 },
         { "name": "Warji", "id": 18 },
-        { "name": "Zaki", "id": 19 }
+        { "name": "Zaki", "id": 19 },
+        { "name": "Bauchi", "id": 20 }
       ]
     }
   },
@@ -155,7 +160,8 @@ export default [
         { "name": "Ogbia", "id": 4 },
         { "name": "Sagbama", "id": 5 },
         { "name": "Southern Ijaw", "id": 6 },
-        { "name": "Yenagoa", "id": 7 }
+        { "name": "Yenagoa", "id": 7 },
+        { "name": "Brass", "id": 8 }
       ]
     }
   },
@@ -219,7 +225,8 @@ export default [
         { "name": "Monguno", "id": 23 },
         { "name": "Ngala", "id": 24 },
         { "name": "Nganzai", "id": 25 },
-        { "name": "Shani", "id": 26 }
+        { "name": "Shani", "id": 26 },
+        { "name": "Abadan", "id": 27 }
       ]
     }
   },
@@ -244,7 +251,8 @@ export default [
         { "name": "Odukpani", "id": 14 },
         { "name": "Ogoja", "id": 15 },
         { "name": "Yakuur", "id": 16 },
-        { "name": "Yala", "id": 17 }
+        { "name": "Yala", "id": 17 },
+        { "name": "Abi", "id": 18}
       ]
     }
   },
@@ -276,7 +284,8 @@ export default [
         { "name": "Uvwie", "id": 21 },
         { "name": "Warri North", "id": 22 },
         { "name": "Warri South", "id": 23 },
-        { "name": "Warri South West", "id": 24 }
+        { "name": "Warri South West", "id": 24 },
+        { "name": "Aniocha North", "id": 25 }
       ]
     }
   },
@@ -296,7 +305,8 @@ export default [
         { "name": "Izzi", "id": 9 },
         { "name": "Ohaozara", "id": 10 },
         { "name": "Ohaukwu", "id": 11 },
-        { "name": "Onicha", "id": 12 }
+        { "name": "Onicha", "id": 12 },
+        { "name": "Abakaliki", "id": 13 }
       ]
     }
   },
@@ -321,7 +331,8 @@ export default [
         { "name": "Ovia South-West", "id": 14 },
         { "name": "Owan East", "id": 15 },
         { "name": "Owan West", "id": 16 },
-        { "name": "Uhunmwonde", "id": 17 }
+        { "name": "Uhunmwonde", "id": 17 },
+        { "name": "Akoko-Edo", "id": 18 }
       ]
     }
   },
@@ -344,7 +355,8 @@ export default [
         { "name": "Irepodun/Ifelodun", "id": 12 },
         { "name": "Ise/Orun", "id": 13 },
         { "name": "Moba", "id": 14 },
-        { "name": "Oye", "id": 15 }
+        { "name": "Oye", "id": 15 },
+        { "name": "Ado-Ekiti", "id": 16 }
       ]
     }
   },
@@ -368,7 +380,8 @@ export default [
         { "name": "Oji River", "id": 13 },
         { "name": "Udenu", "id": 14 },
         { "name": "Udi", "id": 15 },
-        { "name": "Uzo Uwani", "id": 16 }
+        { "name": "Uzo Uwani", "id": 16 },
+        { "name": "Aniniri", "id": 17 }
       ]
     }
   },
@@ -381,7 +394,8 @@ export default [
         { "name": "Gwagwalada", "id": 2 },
         { "name": "Kuje", "id": 3 },
         { "name": "Kwali", "id": 4 },
-        { "name": "Municipal Area Council", "id": 5 }
+        { "name": "Municipal Area Council", "id": 5 },
+        { "name": "Abaji", "id": 6 }
       ]
     }
   },
@@ -399,7 +413,8 @@ export default [
         { "name": "Kwami", "id": 7 },
         { "name": "Nafada", "id": 8 },
         { "name": "Shongom", "id": 9 },
-        { "name": "Yamaltu/Deba", "id": 10 }
+        { "name": "Yamaltu/Deba", "id": 10 },
+        { "name": "Akko", "id": 11 }
       ]
     }
   },
@@ -433,7 +448,8 @@ export default [
         { "name": "Owerri Municipal", "id": 23 },
         { "name": "Owerri North", "id": 24 },
         { "name": "Owerri West", "id": 25 },
-        { "name": "Unuimo", "id": 26 }
+        { "name": "Unuimo", "id": 26 },
+        { "name": "Aboh-Mbaise", "id": 27 }
       ]
     }
   },
@@ -467,7 +483,8 @@ export default [
         { "name": "Roni", "id": 23 },
         { "name": "Sule Tankarkar", "id": 24 },
         { "name": "Taura", "id": 25 },
-        { "name": "Yankwashi", "id": 26 }
+        { "name": "Yankwashi", "id": 26 },
+        { "name": "Auyo", "id": 27 }
       ]
     }
   },
@@ -497,7 +514,8 @@ export default [
         { "name": "Sanga", "id": 19 },
         { "name": "Soba", "id": 20 },
         { "name": "Zangon Kataf", "id": 21 },
-        { "name": "Zaria", "id": 22 }
+        { "name": "Zaria", "id": 22 },
+        { "name": "Birni-Gwari", "id": 23 }
       ]
     }
   },
@@ -548,7 +566,8 @@ export default [
         { "name": "Tudun Wada", "id": 40 },
         { "name": "Ungogo", "id": 41 },
         { "name": "Warawa", "id": 42 },
-        { "name": "Wudil", "id": 43 }
+        { "name": "Wudil", "id": 43 },
+        { "name": "Ajigi", "id": 44 }
       ]
     }
   },
@@ -589,7 +608,8 @@ export default [
         { "name": "Sabuwa", "id": 30 },
         { "name": "Safana", "id": 31 },
         { "name": "Sandamu", "id": 32 },
-        { "name": "Zango", "id": 33 }
+        { "name": "Zango", "id": 33 },
+        { "name": "Bakori", "id": 34 }
       ]
     }
   },
@@ -617,7 +637,9 @@ export default [
         { "name": "Suru", "id": 17 },
         { "name": "Wasagu/Danko", "id": 18 },
         { "name": "Yauri", "id": 19 },
-        { "name": "Zuru", "id": 20 }
+        { "name": "Zuru", "id": 20 },
+        { "name": "Aliero", "id": 21 },
+        { "name": "Danko", "id": 22 }
       ]
     }
   },
@@ -645,7 +667,8 @@ export default [
         { "name": "Olamaboro", "id": 17 },
         { "name": "Omala", "id": 18 },
         { "name": "Yagba East", "id": 19 },
-        { "name": "Yagba West", "id": 20 }
+        { "name": "Yagba West", "id": 20 },
+        { "name": "Adavi", "id": 21 }
       ]
     }
   },
@@ -668,7 +691,8 @@ export default [
         { "name": "Offa", "id": 12 },
         { "name": "Oke Ero", "id": 13 },
         { "name": "Oyun", "id": 14 },
-        { "name": "Pategi", "id": 15 }
+        { "name": "Pategi", "id": 15 },
+        { "name": "Asa", "id": 16 }
       ]
     }
   },
@@ -695,7 +719,8 @@ export default [
         { "name": "Ojo", "id": 16 },
         { "name": "Oshodi-Isolo", "id": 17 },
         { "name": "Shomolu", "id": 18 },
-        { "name": "Surulere", "id": 19 }
+        { "name": "Surulere", "id": 19 },
+        { "name": "Agege", "id": 20 },
       ]
     }
   },
@@ -715,7 +740,8 @@ export default [
         { "name": "Nasarawa Egon", "id": 9 },
         { "name": "Obi", "id": 10 },
         { "name": "Toto", "id": 11 },
-        { "name": "Wamba", "id": 12 }
+        { "name": "Wamba", "id": 12 },
+        { "name": "Akwanga", "id": 13 }
       ]
     }
   },
@@ -747,7 +773,8 @@ export default [
         { "name": "Shiroro", "id": 21 },
         { "name": "Suleja", "id": 22 },
         { "name": "Tafa", "id": 23 },
-        { "name": "Wushishi", "id": 24 }
+        { "name": "Wushishi", "id": 24 },
+        { "name": "Agaie", "id": 25 }
       ]
     }
   },
@@ -774,7 +801,8 @@ export default [
         { "name": "Odogbolu", "id": 16 },
         { "name": "Ogun Waterside", "id": 17 },
         { "name": "Remo North", "id": 18 },
-        { "name": "Shagamu", "id": 19 }
+        { "name": "Shagamu", "id": 19 },
+        { "name": "Abeokuta North", "id": 20 }
       ]
     }
   },
@@ -799,7 +827,9 @@ export default [
         { "name": "Ondo East", "id": 14 },
         { "name": "Ondo West", "id": 15 },
         { "name": "Ose", "id": 16 },
-        { "name": "Owo", "id": 17 }
+        { "name": "Owo", "id": 17 },
+        { "name": "Akoko North-East", "id": 16 }
+
       ]
     }
   },
@@ -836,7 +866,8 @@ export default [
         { "name": "Olorunda", "id": 26 },
         { "name": "Oriade", "id": 27 },
         { "name": "Orolu", "id": 28 },
-        { "name": "Osogbo", "id": 29 }
+        { "name": "Osogbo", "id": 29 },
+        { "name": "Atakunmosa East", "id": 30 }
       ]
     }
   },
@@ -847,7 +878,7 @@ export default [
       "locals": [
         { "name": "Akinyele", "id": 1 },
         { "name": "Atiba", "id": 2 },
-        { "name": "Atisbo", "id": 3 },
+        { "name": "Atigbo", "id": 3 },
         { "name": "Egbeda", "id": 4 },
         { "name": "Ibadan North", "id": 5 },
         { "name": "Ibadan North-East", "id": 6 },
@@ -876,7 +907,9 @@ export default [
         { "name": "Oyo East", "id": 29 },
         { "name": "Saki East", "id": 30 },
         { "name": "Saki West", "id": 31 },
-        { "name": "Surulere", "id": 32 }
+        { "name": "Surulere", "id": 32 },
+        { "name": "Afijio", "id": 33 },
+        { "name": "Ibadan Central", "id": 34 }
       ]
     }
   },
@@ -900,7 +933,8 @@ export default [
         { "name": "Qua'an Pan", "id": 13 },
         { "name": "Riyom", "id": 14 },
         { "name": "Shendam", "id": 15 },
-        { "name": "Wase", "id": 16 }
+        { "name": "Wase", "id": 16 },
+        { "name": "Bokkos", "id": 17 }
       ]
     }
   },
@@ -930,7 +964,8 @@ export default [
         { "name": "Opobo/Nkoro", "id": 19 },
         { "name": "Oyigbo", "id": 20 },
         { "name": "Port Harcourt", "id": 21 },
-        { "name": "Tai", "id": 22 }
+        { "name": "Tai", "id": 22 },
+        { "name": "Abua-Odia", "id": 23 }
       ]
     }
   },
@@ -961,7 +996,7 @@ export default [
         { "name": "Wamako", "id": 20 },
         { "name": "Wurno", "id": 21 },
         { "name": "Yabo", "id": 22 },
-        { "name": "Benji", "id": 23 },
+        { "name": "Benji", "id": 23 }
       ]
     }
   },
@@ -984,7 +1019,8 @@ export default [
         { "name": "Ussa", "id": 12 },
         { "name": "Wukari", "id": 13 },
         { "name": "Yorro", "id": 14 },
-        { "name": "Zing", "id": 15 }
+        { "name": "Zing", "id": 15 },
+        { "name": "Akdo-Kola", "id": 16 }
       ]
     }
   },
@@ -1008,7 +1044,8 @@ export default [
         { "name": "Potiskum", "id": 13 },
         { "name": "Tarmuwa", "id": 14 },
         { "name": "Yunusari", "id": 15 },
-        { "name": "Yusufari", "id": 16 }
+        { "name": "Yusufari", "id": 16 },
+        { "name": "Gashua", "id": 17 }
       ]
     }
   },
@@ -1029,7 +1066,8 @@ export default [
         { "name": "Shinkafi", "id": 10 },
         { "name": "Talata Mafara", "id": 11 },
         { "name": "Chafe", "id": 12 },
-        { "name": "Zurmi", "id": 13 }
+        { "name": "Zurmi", "id": 13 },
+        { "name": "Anka", "id": 14 }
       ]
     }
   }

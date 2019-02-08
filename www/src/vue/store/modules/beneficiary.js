@@ -13,10 +13,14 @@ export default {
 
     getters: {
         stateBeneficiaries: state => (stateToGet) => {
-            return state.beneficiaries.filter(ben => ben.center_key === stateToGet && !!ben.isOffline)
-        }
+            return state
+            .beneficiaries
+            .filter(ben => ben.center_key === stateToGet && !!ben.isOffline)
+            .sort((a, b ) => {
+                return a.surname > b.surname ? 1 : -1
+            })    
+        },
     },
-
     mutations: {
         add(state, newBenficiary) {
             state.benficiaries.unshift(newBenficiary)

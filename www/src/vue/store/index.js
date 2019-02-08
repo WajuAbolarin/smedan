@@ -10,12 +10,19 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state:{
-    states : NigerianStates,
+    states : NigerianStates.sort((a, b ) => {
+      return a.state.name > b.state.name ? 1 : -1
+    }),
   },
   getters:{
     getLGAs: (state) => (stateToGet)=> {   
       return state.states
-            .find(item => item.state.name.includes(stateToGet)).state.locals
+            .find(item => item.state.name.includes(stateToGet))
+            .state
+            .locals
+            .sort((a, b ) => {
+              return a.name > b.name ? 1 : -1
+            })
     }
   },
   modules: {
