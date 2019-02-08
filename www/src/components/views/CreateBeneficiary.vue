@@ -149,9 +149,21 @@
                                                     <div class="form-group ">
                                                         <label>Business Type</label>
                                                         <select class="form-control" v-model="businessType">
-                                                            <option>Agriculture</option>
-                                                            <option>ICT</option>
+                                                            <option>Agriculture and Mining</option>
+                                                            <option>Business Services</option>
+                                                            <option>Computer and Electronics</option>
+                                                            <option>Education</option>
+                                                            <option>Energy and Utilities</option>
+                                                            <option>Financial Services</option>
+                                                            <option>Health, Pharmaceuticals</option>
+                                                            <option>light Manufacturing</option>
+                                                            <option>Media and Entertainment</option>
+                                                            <option>Real Estate and Construction</option>
+                                                            <option>Software and Internet</option>
+                                                            <option>Telecommunications</option>
                                                             <option>Trading</option>
+                                                            <option>Transportation</option>
+                                                            <option>Wholesale</option>
                                                         </select>
                                                     </div> 
                                                 </div>

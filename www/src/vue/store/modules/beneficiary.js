@@ -13,7 +13,7 @@ export default {
 
     getters: {
         stateBeneficiaries: state => (stateToGet) => {
-            return state.beneficiaries.filter(ben => ben.center_key === stateToGet && ben.isOffline)
+            return state.beneficiaries.filter(ben => ben.center_key === stateToGet && !!ben.isOffline)
         }
     },
 
@@ -74,37 +74,36 @@ export default {
                 data.append(field, value)
             }
 
+            if(beneficiary.pictureName){
 
-           window.resolveLocalFileSystemURL(beneficiary.pictureName, (fileEntry) => {
-                 fileEntry.file((file) => {
-                    console.log('got file object')
-                    let reader = new FileReader()
+            window.resolveLocalFileSystemURL(beneficiary.pictureName, (fileEntry) => {
+                    fileEntry.file((file) => {
+                        console.log('got file object')
+                        let reader = new FileReader()
 
-                    reader.onload = function(e) {
+                        reader.onload = function(e) {
 
-                        let blob = new Blob([new Uint8Array(reader.result)], { type: 'image/jpeg' })
+                            let blob = new Blob([new Uint8Array(reader.result)], { type: 'image/jpeg' })
 
-                        // console.log('got blob')
+                            // console.log('got blob')
 
-                        data.set('pictureName', blob, 'pictureName.jpeg')
+                            data.set('pictureName', blob, 'pictureName.jpeg')
 
-                        // console.log('starting upload')
+                            // console.log('starting upload')
 
-                      return  axios.post('https://www.smedancgs.com.ng/api/v1/beneficiary',
+                        return  axios.post('https://www.smedancgs.com.ng/api/v1/beneficiary',
                                 data, {
                                     header: {
                                         'Content-Type': 'multipart/form-data'
                                     }
                                 })
                             .then(res => {
-
-                                if (res.data.status === 'success') {
-
+                                if (res.data.status.toLowerCase().includes('success')) {
                                     Storage.getItem('SMEDAN_BENEFICIARIES')
                                         .then(bens => {
 
-                                            bens = bens.fiter(b => b.key !== beneficiary.key)
-
+                                            bens = bens.filter(b => b.key !== beneficiary.key)
+                                            
                                             bens.push(Object.assign({}, beneficiary, { isOffline: false }))
 
                                             return bens
@@ -117,29 +116,63 @@ export default {
                                             return 'success'
 
                                         })
+                                        return 'success'
 
                                 }
-
-                                return 'failed'
+                                return 'failed' 
                             })
 
-                    }
+                        }
 
-                    reader.onerror = (e) => {
-                        console.log(e)
-                    }
+                        reader.onerror = (e) => {
+                            console.log(e)
+                        }
 
-                    reader.readAsArrayBuffer(file)
+                        reader.readAsArrayBuffer(file)
 
-                }, (err) => { 
-                    'failed to convert to file'
+                    }, (err) => { 
+                        'failed to convert to file'
+                        return 'failed'
+                    })
+                    }, (err) => { 
+                    console.dir(err)
                     return 'failed'
-                 })
-                }, (err) => { 
-                console.dir(err)
-                return 'failed'
-             })
+                })
+            } else{
+                // just for testing
+                return  axios.post('https://www.smedancgs.com.ng/api/v1/beneficiary',
+                            data, {
+                                header: {
+                                    'Content-Type': 'multipart/form-data'
+                                }
+                            })
+                        .then(res => {
+                            if (res.data.status.toLowerCase().includes('success')) {
+                                Storage.getItem('SMEDAN_BENEFICIARIES')
+                                    .then(bens => {
 
+                                        bens = bens.filter(b => b.key !== beneficiary.key)
+                                        
+                                        console.dir(Object.assign({}, beneficiary, { isOffline: false }))
+
+                                        bens.push(Object.assign({}, beneficiary, { isOffline: false }))
+
+                                        return bens
+
+                                    })
+                                    .then(newBens => {
+
+                                        Storage.setItem('SMEDAN_BENEFICIARIES', newBens)
+
+                                        return 'success'
+
+                                    })
+                                    return 'success'
+
+                            }
+                            return 'failed'
+                        })
+            }
         }
     }
 }
