@@ -145,7 +145,7 @@ export default [
         { "name": "Toro", "id": 17 },
         { "name": "Warji", "id": 18 },
         { "name": "Zaki", "id": 19 },
-        { "name": "Akaleri", "id": 20 }
+        { "name": "Alkaleri", "id": 20 }
       ]
     }
   },
