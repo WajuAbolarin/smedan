@@ -332,7 +332,8 @@ export default [
         { "name": "Owan East", "id": 15 },
         { "name": "Owan West", "id": 16 },
         { "name": "Uhunmwonde", "id": 17 },
-        { "name": "Akoko-Edo", "id": 18 }
+        { "name": "Akoko-Edo", "id": 18 },
+        { "name": "Agbazko", "id": 19 }
       ]
     }
   },
@@ -828,7 +829,7 @@ export default [
         { "name": "Ondo West", "id": 15 },
         { "name": "Ose", "id": 16 },
         { "name": "Owo", "id": 17 },
-        { "name": "Akoko North-East", "id": 16 }
+        { "name": "Akoko North-East", "id": 18 }
 
       ]
     }
